@@ -1,17 +1,17 @@
-interface Bird
+interface Burung
 {
     // birds implement Bird interface that allows
     // them to fly and make sounds adaptee interface
-    public void fly();
+    public void terbang();
     public void makeSound();
 }
   
-class Sparrow implements Bird
+class Gagak implements Burung
 {
     // a concrete implementation of bird
-    public void fly()
+    public void terbang()
     {
-        System.out.println("Flying");
+        System.out.println("Terbang");
     }
     public void makeSound()
     {
@@ -19,7 +19,7 @@ class Sparrow implements Bird
     }
 }
   
-interface ToyDuck
+interface BebekMainan
 {
     // target interface
     // toyducks dont fly they just make
@@ -27,7 +27,7 @@ interface ToyDuck
     public void squeak();
 }
   
-class PlasticToyDuck implements ToyDuck
+class PlasticBebekMainan implements BebekMainan
 {
     public void squeak()
     {
@@ -35,44 +35,44 @@ class PlasticToyDuck implements ToyDuck
     }
 }
   
-class BirdAdapter implements ToyDuck
+class BurungAdapter implements BebekMainan
 {
     // You need to implement the interface your
     // client expects to use.
-    Bird bird;
-    public BirdAdapter(Bird bird)
+    Burung burung;
+    public BurungAdapter(Burung burung)
     {
         // we need reference to the object we
         // are adapting
-        this.bird = bird;
+        this.burung = burung;
     }
   
     public void squeak()
     {
         // translate the methods appropriately
-        bird.makeSound();
+        burung.makeSound();
     }
 }
 
 public class App {
     public static void main(String args[])
     {
-        Sparrow sparrow = new Sparrow();
-        ToyDuck toyDuck = new PlasticToyDuck();
+        Gagak gagak = new Gagak();
+        BebekMainan bebekMainan = new PlasticBebekMainan();
   
         // Wrap a bird in a birdAdapter so that it 
         // behaves like toy duck
-        ToyDuck birdAdapter = new BirdAdapter(sparrow);
+        BebekMainan burungAdapter = new BurungAdapter(gagak);
   
-        System.out.println("Sparrow...");
-        sparrow.fly();
-        sparrow.makeSound();
+        System.out.println("Gagak...");
+        gagak.terbang();
+        gagak.makeSound();
   
-        System.out.println("ToyDuck...");
-        toyDuck.squeak();
+        System.out.println("BebekMainan...");
+        bebekMainan.squeak();
   
         // toy duck behaving like a bird 
-        System.out.println("BirdAdapter...");
-        birdAdapter.squeak();
+        System.out.println("BurungAdapter...");
+        burungAdapter.squeak();
     }
 }
